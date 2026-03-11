@@ -1,0 +1,224 @@
+{
+  "bayi": [
+    {
+      "instruction": "Tampilkan teks 'Halo' ke dalam console browser.",
+      "codeHtml": "console.<span class=\"func\">DROP0</span>(<span class=\"str\">DROP1</span>);",
+      "options": ["log", "print", "'Halo'", "write", "echo"],
+      "answers": ["log", "'Halo'"],
+      "points": 5
+    },
+    {
+      "instruction": "Buat variabel sederhana bernama 'x' dengan nilai 10.",
+      "codeHtml": "<span class=\"kw\">DROP0</span> x <span class=\"op\">=</span> <span class=\"num\">DROP1</span>;",
+      "options": ["var", "let", "10", "const", "int"],
+      "answers": ["let", "10"],
+      "points": 5
+    },
+    {
+      "instruction": "Lakukan operasi matematika dasar pembagian.",
+      "codeHtml": "<span class=\"kw\">let</span> hasil <span class=\"op\">=</span> <span class=\"num\">20</span> <span class=\"op\">DROP0</span> <span class=\"num\">DROP1</span>;",
+      "options": ["/", "*", "2", "+", "bagi"],
+      "answers": ["/", "2"],
+      "points": 5
+    },
+    {
+      "instruction": "Deklarasikan variabel Boolean bernilai benar.",
+      "codeHtml": "<span class=\"kw\">const</span> isLogin <span class=\"op\">=</span> <span class=\"kw\">DROP0</span><span class=\"op\">;</span>",
+      "options": ["true", "false", "benar", "1", "null"],
+      "answers": ["true"],
+      "points": 5
+    },
+    {
+      "instruction": "Buat variabel string dengan kutip tunggal.",
+      "codeHtml": "<span class=\"kw\">let</span> nama <span class=\"op\">=</span> <span class=\"str\">DROP0</span>Budi<span class=\"str\">DROP1</span>;",
+      "options": ["'", "\"", "`", ";", ":"],
+      "answers": ["'", "'"],
+      "points": 5
+    }
+  ],
+  "sd": [
+    {
+      "instruction": "Akses elemen pertama dari array 'buah'.",
+      "codeHtml": "<span class=\"kw\">const</span> buah <span class=\"op\">=</span> [<span class=\"str\">'Apel'</span>, <span class=\"str\">'Jeruk'</span>];<br><span class=\"kw\">const</span> fav <span class=\"op\">=</span> buah[<span class=\"num\">DROP0</span>];",
+      "options": ["0", "1", "first", "[]", "2"],
+      "answers": ["0"],
+      "points": 10
+    },
+    {
+      "instruction": "Lengkapi struktur percabangan dasar (If Statement).",
+      "codeHtml": "<span class=\"kw\">DROP0</span> (nilai <span class=\"op\">></span> <span class=\"num\">70</span>) {<br>    console.<span class=\"func\">log</span>(<span class=\"str\">'Lulus'</span>);<br>}",
+      "options": ["if", "else", "when", "for", "switch"],
+      "answers": ["if"],
+      "points": 10
+    },
+    {
+      "instruction": "Akses properti 'merk' dari sebuah object.",
+      "codeHtml": "<span class=\"kw\">const</span> mobil <span class=\"op\">=</span> { merk: <span class=\"str\">'Toyota'</span> };<br>console.<span class=\"func\">log</span>(mobil<span class=\"op\">DROP0</span>DROP1);",
+      "options": [".", "merk", "->", "name", "[]"],
+      "answers": [".", "merk"],
+      "points": 10
+    },
+    {
+      "instruction": "Tambahkan angka 5 ke bagian paling akhir dari array.",
+      "codeHtml": "<span class=\"kw\">let</span> arr <span class=\"op\">=</span> [<span class=\"num\">1</span>, <span class=\"num\">2</span>];<br>arr.<span class=\"func\">DROP0</span>(<span class=\"num\">DROP1</span>);",
+      "options": ["push", "pop", "5", "add", "shift"],
+      "answers": ["push", "5"],
+      "points": 10
+    },
+    {
+      "instruction": "Buat sebuah fungsi konvensional bernama 'sapa'.",
+      "codeHtml": "<span class=\"kw\">DROP0</span> <span class=\"func\">sapa</span>() {<br>    <span class=\"kw\">DROP1</span> <span class=\"str\">'Halo!'</span>;<br>}",
+      "options": ["function", "return", "const", "yield", "=>"],
+      "answers": ["function", "return"],
+      "points": 10
+    }
+  ],
+  "smp": [
+    {
+      "instruction": "Lengkapi perulangan FOR ini agar berjalan 5 kali.",
+      "codeHtml": "<span class=\"kw\">for</span>(<span class=\"kw\">let</span> i <span class=\"op\">=</span> <span class=\"num\">0</span>; i <span class=\"op\"><</span> <span class=\"num\">DROP0</span>; i<span class=\"op\">DROP1</span>) {}",
+      "options": ["5", "++", "+=", "6", "--"],
+      "answers": ["5", "++"],
+      "points": 15
+    },
+    {
+      "instruction": "Gabungkan string dan variabel menggunakan Template Literal (Backtick).",
+      "codeHtml": "<span class=\"kw\">const</span> teks <span class=\"op\">=</span> <span class=\"str\">`Halo </span>DROP0namaDROP1<span class=\"str\">`</span>;",
+      "options": ["${", "}", "$", "+", "()"],
+      "answers": ["${", "}"],
+      "points": 15
+    },
+    {
+      "instruction": "Lengkapi sintaks perulangan WHILE.",
+      "codeHtml": "<span class=\"kw\">DROP0</span> (x <span class=\"op\"><</span> <span class=\"num\">10</span>) {<br>    x<span class=\"op\">++</span>;<br>}",
+      "options": ["while", "for", "if", "loop", "do"],
+      "answers": ["while"],
+      "points": 15
+    },
+    {
+      "instruction": "Gunakan struktur Switch untuk mengecek nilai variabel.",
+      "codeHtml": "<span class=\"kw\">DROP0</span>(warna) {<br>    <span class=\"kw\">DROP1</span> <span class=\"str\">'merah'</span>:<br>        <span class=\"kw\">break</span>;<br>}",
+      "options": ["switch", "case", "if", "match", "default"],
+      "answers": ["switch", "case"],
+      "points": 15
+    },
+    {
+      "instruction": "Bandingkan dua nilai beserta tipe datanya (Strict Equality).",
+      "codeHtml": "<span class=\"kw\">if</span> (<span class=\"num\">10</span> <span class=\"op\">DROP0</span> <span class=\"str\">'10'</span>) {<br>    <span class=\"comment\">// Tidak akan tereksekusi</span><br>}",
+      "options": ["===", "==", "=", "!==", "=>"],
+      "answers": ["==="],
+      "points": 15
+    }
+  ],
+  "smk": [
+    {
+      "instruction": "Gunakan Object Destructuring untuk mengekstrak properti.",
+      "codeHtml": "<span class=\"kw\">const</span> { DROP0, DROP1 } <span class=\"op\">=</span> mahasiswa;",
+      "options": ["nama", "nim", "mahasiswa", "[", "]"],
+      "answers": ["nama", "nim"],
+      "points": 20
+    },
+    {
+      "instruction": "Manipulasi DOM: Ubah teks pada elemen HTML.",
+      "codeHtml": "document.<span class=\"func\">DROP0</span>(<span class=\"str\">'judul'</span>).DROP1 <span class=\"op\">=</span> <span class=\"str\">'Kuis'</span>;",
+      "options": ["getElementById", "innerText", "querySelector", "value", "html"],
+      "answers": ["getElementById", "innerText"],
+      "points": 20
+    },
+    {
+      "instruction": "Gabungkan dua array menggunakan Spread Operator.",
+      "codeHtml": "<span class=\"kw\">const</span> gabungan <span class=\"op\">=</span> [DROP0arr1, DROP1arr2];",
+      "options": ["...", "...", "concat", "push", "=>"],
+      "answers": ["...", "..."],
+      "points": 20
+    },
+    {
+      "instruction": "Tulis Arrow Function yang mengembalikan nilai secara implisit.",
+      "codeHtml": "<span class=\"kw\">const</span> luas <span class=\"op\">=</span> (p, l) <span class=\"kw\">DROP0</span> p <span class=\"op\">*</span> l;",
+      "options": ["=>", "->", "{", "return", "}"],
+      "answers": ["=>"],
+      "points": 20
+    },
+    {
+      "instruction": "Cegah default action dari sebuah form saat di-submit.",
+      "codeHtml": "form.<span class=\"func\">addEventListener</span>(<span class=\"str\">'submit'</span>, (e) <span class=\"kw\">=></span> {<br>    e.<span class=\"func\">DROP0</span>();<br>});",
+      "options": ["preventDefault", "stopPropagation", "halt", "returnFalse", "stop"],
+      "answers": ["preventDefault"],
+      "points": 20
+    }
+  ],
+  "kuliah": [
+    {
+      "instruction": "Gunakan method 'map' untuk mengalikan isi array dengan 2.",
+      "codeHtml": "<span class=\"kw\">const</span> ganda <span class=\"op\">=</span> arr.<span class=\"func\">DROP0</span>(x <span class=\"kw\">=></span> x <span class=\"op\">*</span> <span class=\"num\">DROP1</span>);",
+      "options": ["map", "filter", "2", "reduce", "forEach"],
+      "answers": ["map", "2"],
+      "points": 25
+    },
+    {
+      "instruction": "Buat class OOP dengan method constructor.",
+      "codeHtml": "<span class=\"kw\">DROP0</span> Person {<br>    <span class=\"func\">DROP1</span>(nama) {<br>        <span class=\"kw\">this</span>.nama <span class=\"op\">=</span> nama;<br>    }<br>}",
+      "options": ["class", "constructor", "function", "init", "new"],
+      "answers": ["class", "constructor"],
+      "points": 25
+    },
+    {
+      "instruction": "Buat sebuah Promise baru yang mengembalikan fungsi resolve.",
+      "codeHtml": "<span class=\"kw\">const</span> janji <span class=\"op\">=</span> <span class=\"kw\">new</span> <span class=\"func\">DROP0</span>((DROP1, reject) <span class=\"kw\">=></span> { });",
+      "options": ["Promise", "resolve", "Async", "await", "catch"],
+      "answers": ["Promise", "resolve"],
+      "points": 25
+    },
+    {
+      "instruction": "Saring (filter) array untuk mencari user dengan umur di atas 18.",
+      "codeHtml": "<span class=\"kw\">const</span> dewasa <span class=\"op\">=</span> users.<span class=\"func\">DROP0</span>(u <span class=\"kw\">=></span> u.umur <span class=\"op\">></span> <span class=\"num\">DROP1</span>);",
+      "options": ["filter", "find", "18", "map", "reduce"],
+      "answers": ["filter", "18"],
+      "points": 25
+    },
+    {
+      "instruction": "Jalankan fungsi setelah jeda waktu 1 detik (1000ms).",
+      "codeHtml": "<span class=\"func\">DROP0</span>(() <span class=\"kw\">=></span> {<br>    console.<span class=\"func\">log</span>(<span class=\"str\">'Telat'</span>);<br>}, <span class=\"num\">DROP1</span>);",
+      "options": ["setTimeout", "setInterval", "1000", "1", "delay"],
+      "answers": ["setTimeout", "1000"],
+      "points": 25
+    }
+  ],
+  "kantoran": [
+    {
+      "instruction": "Ambil data secara Asynchronous menggunakan Fetch API.",
+      "codeHtml": "<span class=\"kw\">const</span> res <span class=\"op\">=</span> <span class=\"kw\">DROP0</span> <span class=\"func\">fetch</span>(url);<br><span class=\"kw\">const</span> data <span class=\"op\">=</span> <span class=\"kw\">await</span> res.<span class=\"func\">DROP1</span>();",
+      "options": ["await", "async", "json", "text", "promise"],
+      "answers": ["await", "json"],
+      "points": 30
+    },
+    {
+      "instruction": "Gunakan Nullish Coalescing dan Optional Chaining.",
+      "codeHtml": "<span class=\"kw\">const</span> nama <span class=\"op\">=</span> userDROP0name DROP1 <span class=\"str\">'Guest'</span>;",
+      "options": ["?.", "??", "||", ".", "&&"],
+      "answers": ["?.", "??"],
+      "points": 30
+    },
+    {
+      "instruction": "Hitung total harga keseluruhan array of objects menggunakan metode fungsional.",
+      "codeHtml": "<span class=\"kw\">const</span> total <span class=\"op\">=</span> items.<span class=\"func\">DROP0</span>((sum, item) <span class=\"kw\">=></span> sum <span class=\"op\">+</span> item.price, <span class=\"num\">DROP1</span>);",
+      "options": ["reduce", "map", "0", "1", "filter"],
+      "answers": ["reduce", "0"],
+      "points": 30
+    },
+    {
+      "instruction": "Ekspor sebuah variabel konstan agar dapat di-import di file modular lain.",
+      "codeHtml": "<span class=\"kw\">DROP0</span> <span class=\"kw\">DROP1</span> API_KEY <span class=\"op\">=</span> <span class=\"str\">'123'</span>;",
+      "options": ["export", "const", "import", "default", "module"],
+      "answers": ["export", "const"],
+      "points": 30
+    },
+    {
+      "instruction": "Tangani potensi error dari pemanggilan API dengan Try-Catch.",
+      "codeHtml": "<span class=\"kw\">DROP0</span> {<br>    <span class=\"kw\">await</span> <span class=\"func\">syncData</span>();<br>} <span class=\"kw\">DROP1</span> (err) {<br>    console.<span class=\"func\">error</span>(err);<br>}",
+      "options": ["try", "catch", "finally", "error", "throw"],
+      "answers": ["try", "catch"],
+      "points": 30
+    }
+  ]
+}

@@ -1,0 +1,140 @@
+<body class="text-gray-800 font-sans min-h-screen flex flex-col items-center justify-center p-4 sm:p-8 relative">
+
+    <div class="w-full max-w-5xl glass-card rounded-3xl overflow-hidden shadow-lg relative bg-white">
+        
+        <div id="progress-container" class="absolute top-0 left-0 w-full bg-gray-100 h-1.5 hidden z-20">
+            <div id="progress-bar" class="bg-blue-600 h-1.5 w-0 transition-all duration-500 ease-out"></div>
+        </div>
+
+        <div id="login-container" class="w-full flex flex-col md:flex-row">
+            
+            <div class="w-full md:w-5/12 p-8 sm:p-10 flex flex-col justify-center border-b md:border-b-0 md:border-r border-gray-100 bg-white">
+                <div class="text-center md:text-left mb-8">
+                    <h1 class="text-3xl font-bold text-gray-900 tracking-tight mb-2">Evaluasi Kode</h1>
+                    <p class="text-sm text-gray-500">Uji kemampuan JavaScript Anda!</p>
+                </div>
+
+                <div class="space-y-5">
+                    <div>
+                        <label class="block text-xs font-semibold text-gray-400 uppercase tracking-wider mb-2">Nama Lengkap</label>
+                        <input type="text" id="student-name" class="w-full px-4 py-3 rounded-xl border border-gray-200 bg-gray-50 focus:bg-white focus:ring-2 focus:ring-blue-500 outline-none transition-all" placeholder="Masukkan nama Anda">
+                    </div>
+                    <div>
+                        <label class="block text-xs font-semibold text-gray-400 uppercase tracking-wider mb-2">Pilih Level</label>
+                        <select id="level-select" class="w-full px-4 py-3 rounded-xl border border-gray-200 bg-gray-50 focus:bg-white focus:ring-2 focus:ring-blue-500 outline-none transition-all appearance-none cursor-pointer font-medium">
+                            <option value="bayi">Level Bayi</option>
+                            <option value="sd">Level SD</option>
+                            <option value="smp">Level SMP</option>
+                            <option value="smk">Level SMK</option>
+                            <option value="kuliah">Level Kuliah</option>
+                            <option value="kantoran">Level Kantoran</option>
+                        </select>
+                    </div>
+                    <button id="start-btn" disabled class="w-full bg-gray-900 text-white font-medium py-3.5 px-6 rounded-xl transition duration-200 shadow-lg shadow-gray-200 mt-2 disabled:opacity-50 disabled:cursor-not-allowed hover:bg-black">
+                        Memuat data...
+                    </button>
+                </div>
+            </div>
+
+            <div class="w-full md:w-7/12 p-6 sm:p-10 bg-gray-50">
+                <div class="flex items-center justify-between mb-4">
+                    <h2 class="text-lg font-bold text-gray-900 flex items-center gap-2">
+                        <svg class="w-5 h-5 text-yellow-500" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path></svg>
+                        Top 10 Global
+                    </h2>
+                </div>
+                
+                <div class="bg-white rounded-2xl border border-gray-100 shadow-sm overflow-hidden h-[340px] flex flex-col">
+                    <div class="grid grid-cols-12 gap-1 px-3 py-3 border-b border-gray-100 bg-gray-50/80 text-[10px] sm:text-xs font-bold text-gray-500 uppercase tracking-widest">
+                        <div class="col-span-1 text-center">No</div>
+                        <div class="col-span-4 pl-1">Nama</div>
+                        <div class="col-span-2">Level</div>
+                        <div class="col-span-2 text-center">Skor</div>
+                        <div class="col-span-3 text-right pr-2">Waktu</div>
+                    </div>
+                    <div id="leaderboard-list" class="overflow-y-auto custom-scrollbar flex-1 p-2 space-y-1">
+                        </div>
+                </div>
+            </div>
+        </div>
+
+        <div id="quiz-screen" style="display: none;">
+            <div class="w-full p-8 sm:p-12 relative pt-12">
+                <div class="flex justify-between items-end mb-6 border-b border-gray-100 pb-4">
+                    <div>
+                        <span class="text-xs font-bold text-blue-600 uppercase tracking-wider bg-blue-50 px-3 py-1 rounded-full">Level: <span id="display-level" class="capitalize"></span></span>
+                        <div class="mt-4">
+                            <span class="text-xs font-bold text-gray-400 uppercase tracking-wider">Soal <span id="current-q-num">1</span> dari <span id="total-q-num">10</span></span>
+                            <h2 id="instruction-text" class="text-xl font-semibold text-gray-900 mt-1 leading-relaxed"></h2>
+                        </div>
+                    </div>
+                    <div class="text-right flex flex-col items-end">
+                        <span class="text-[10px] font-bold text-gray-400 uppercase tracking-widest mb-1">Waktu</span>
+                        <div class="bg-gray-900 text-white font-mono text-xl px-4 py-2 rounded-xl flex items-center gap-2 shadow-sm">
+                            <svg class="w-4 h-4 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
+                            <span id="timer-display">00:00</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="relative bg-vscode-bg rounded-2xl shadow-inner mb-8 overflow-hidden">
+                    <div class="bg-[#2d2d2d] px-4 py-3 flex items-center space-x-2">
+                        <div class="w-3 h-3 rounded-full bg-red-500"></div>
+                        <div class="w-3 h-3 rounded-full bg-yellow-500"></div>
+                        <div class="w-3 h-3 rounded-full bg-green-500"></div>
+                        <span class="ml-4 text-xs text-gray-400 font-mono">script.js</span>
+                    </div>
+                    <div class="p-6 overflow-x-auto text-[15px] leading-loose font-mono text-gray-100">
+                        <pre><code id="code-content" class="block whitespace-pre-wrap"></code></pre>
+                    </div>
+                </div>
+
+                <div class="mb-8">
+                    <div class="flex items-center justify-between mb-3">
+                        <h3 class="text-xs font-bold text-gray-400 uppercase tracking-wider">Pilihan Jawaban</h3>
+                    </div>
+                    <div id="options-container" class="flex flex-wrap gap-3 p-5 bg-white border border-gray-100 rounded-2xl shadow-sm min-h-[90px]"></div>
+                </div>
+
+                <div class="flex justify-between items-center border-t border-gray-100 pt-6">
+                    <p class="text-xs text-gray-400">Poin soal ini: <span id="q-points" class="font-bold text-gray-700"></span></p>
+                    <button id="next-btn" class="bg-blue-600 hover:bg-blue-700 text-white font-medium py-3 px-8 rounded-xl transition shadow-lg shadow-blue-200">
+                        Simpan & Lanjut
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <div id="result-screen" style="display: none;">
+            <div class="w-full p-8 sm:p-12 bg-gray-50 flex flex-col items-center justify-center">
+                <div id="capture-area" class="bg-white p-8 sm:p-12 rounded-3xl text-center w-full max-w-lg mx-auto border border-gray-100 shadow-sm relative">
+                    <div class="absolute top-4 right-6 opacity-30">
+                        <span class="text-[10px] font-bold tracking-widest uppercase">JS Quiz</span>
+                    </div>
+                    <h2 class="text-3xl font-bold text-gray-900 mb-2">Evaluasi Selesai</h2>
+                    <p class="text-gray-500 mb-6">Level <span id="final-level" class="capitalize font-bold text-blue-600"></span> - <span id="final-name" class="font-semibold text-gray-900"></span></p>
+                    
+                    <div class="grid grid-cols-2 gap-4 mb-2">
+                        <div class="bg-gray-50 border border-gray-200 rounded-2xl p-6 relative overflow-hidden">
+                            <div class="absolute top-0 left-0 w-full h-1 bg-blue-500"></div>
+                            <p class="text-xs text-gray-500 uppercase tracking-widest font-bold mb-2">Skor Total</p>
+                            <p id="final-score" class="text-5xl font-black text-gray-900 tracking-tighter"></p>
+                        </div>
+                        <div class="bg-gray-50 border border-gray-200 rounded-2xl p-6 relative overflow-hidden">
+                            <div class="absolute top-0 left-0 w-full h-1 bg-yellow-500"></div>
+                            <p class="text-xs text-gray-500 uppercase tracking-widest font-bold mb-2">Waktu</p>
+                            <p id="final-time" class="text-3xl font-black text-gray-900 tracking-tighter mt-3"></p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="flex flex-col sm:flex-row justify-center gap-4 mt-8 w-full max-w-lg mx-auto">
+                    <button id="share-btn" class="flex-1 bg-blue-600 hover:bg-blue-700 text-white font-medium py-3.5 px-6 rounded-xl transition shadow-lg shadow-blue-200">Bagikan Skor</button>
+                    <button id="restart-btn" class="flex-1 bg-white hover:bg-gray-100 text-gray-900 border border-gray-200 font-medium py-3.5 px-6 rounded-xl transition">Menu Utama</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <script type="module" src="./src/main.js"></script>
+</body>

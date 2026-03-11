@@ -1,0 +1,45 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+body { background-color: #fcfcfc; }
+.glass-card {
+    background: #ffffff;
+    box-shadow: 0 4px 24px rgba(0, 0, 0, 0.03), 0 1px 2px rgba(0, 0, 0, 0.01);
+    border: 1px solid rgba(229, 231, 235, 0.5);
+}
+
+/* Syntax Highlighting */
+.kw { color: #569cd6; font-weight: 500;} 
+.str { color: #ce9178; } 
+.num { color: #b5cea8; } 
+.func { color: #dcdcaa; } 
+.op { color: #d4d4d4; } 
+
+/* Drop Zone UI */
+.drop-zone {
+    display: inline-flex; align-items: center; justify-content: center;
+    min-width: 80px; height: 34px; margin: 0 6px;
+    vertical-align: middle; border-radius: 6px;
+    font-family: 'JetBrains Mono', monospace; font-size: 0.875rem;
+    transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+}
+.drop-zone-empty {
+    border: 1.5px dashed #6b7280; background-color: rgba(255, 255, 255, 0.05); color: transparent;
+}
+.drop-zone-empty:hover { border-color: #9ca3af; background-color: rgba(255, 255, 255, 0.1); }
+.drop-zone-dragover { background-color: rgba(59, 130, 246, 0.2); border-color: #3b82f6; border-style: solid; transform: scale(1.05); }
+.drop-zone-filled { background-color: #111827; color: #ffffff; border: 1.5px solid #111827; cursor: pointer; box-shadow: 0 2px 8px rgba(0,0,0,0.15); }
+.drop-zone-filled:hover { background-color: #ef4444; border-color: #ef4444; }
+
+/* Draggable Item UI */
+.draggable-item { cursor: grab; user-select: none; transition: transform 0.2s, box-shadow 0.2s; }
+.draggable-item:hover { transform: translateY(-2px); box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08); }
+.draggable-item:active { cursor: grabbing; transform: translateY(0); }
+
+/* Custom Scrollbar & Utils */
+.fade-screen { display: none; }
+.custom-scrollbar::-webkit-scrollbar { width: 4px; }
+.custom-scrollbar::-webkit-scrollbar-track { background: #f1f1f1; border-radius: 4px; }
+.custom-scrollbar::-webkit-scrollbar-thumb { background: #cbd5e1; border-radius: 4px; }
+.custom-scrollbar::-webkit-scrollbar-thumb:hover { background: #94a3b8; }
