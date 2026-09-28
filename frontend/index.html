@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kuis Kustom dari Materi</title>
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Manrope:wght@400;500;600;700;800&family=Newsreader:opsz,wght@6..72,500;6..72,600&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="app-shell">
+        <header class="topbar">
+            <a class="wordmark" href="./" aria-label="Kuis Kustom, beranda">
+                <span class="wordmark-mark" aria-hidden="true">q</span>
+                <span>RUANG KUIS</span>
+            </a>
+            <span class="topbar-note"><span class="status-dot"></span> BELAJAR DENGAN FOKUS</span>
+        </header>
+
+        <main class="quiz-app">
+            <div id="progress-container" class="quiz-progress hidden" aria-label="Kemajuan kuis">
+                <div id="progress-bar" class="quiz-progress-bar"></div>
+            </div>
+
+            <section id="login-container" class="setup-screen">
+                <div class="setup-intro">
+                    <p class="eyebrow"><span>01</span> / PERSIAPAN</p>
+                    <h1>Belajar, lalu <em>buktikan.</em></h1>
+                    <p class="intro-copy">Ubah materi pilihanmu menjadi tantangan yang dirancang khusus untukmu.</p>
+                    <div class="study-stamp" aria-hidden="true">
+                        <div class="stamp-ring">
+                            <span class="stamp-top">RUANG KUIS</span>
+                            <span class="stamp-center">Q<span>+</span></span>
+                            <span class="stamp-bottom">MULAI BELAJAR</span>
+                        </div>
+                        <span class="stamp-spark">✳</span>
+                    </div>
+                </div>
+
+                <form class="setup-form" onsubmit="return false">
+                    <div class="form-heading">
+                        <span class="form-step">A</span>
+                        <div>
+                            <h2>Siapkan kuis</h2>
+                            <p>Isi detail di bawah untuk memulai.</p>
+                        </div>
+                    </div>
+
+                    <div class="field-group">
+                        <label for="student-name">Nama peserta</label>
+                        <input type="text" id="student-name" autocomplete="name" placeholder="Contoh: Nadia Putri">
+                    </div>
+
+                    <div class="field-group">
+                        <label for="material-file">File materi</label>
+                        <label class="upload-zone" for="material-file">
+                            <input id="material-file" type="file" accept=".pdf,.docx,.txt,.md,application/pdf,application/vnd.openxmlformats-officedocument.wordprocessingml.document,text/plain">
+                            <span class="upload-mark" aria-hidden="true">↑</span>
+                            <span class="upload-copy">
+                                <strong id="file-name">Seret file ke sini atau telusuri</strong>
+                                <span id="file-hint">PDF, DOCX, TXT, atau Markdown · maks. 5 MB</span>
+                            </span>
+                            <span class="upload-browse">Telusuri</span>
+                        </label>
+                    </div>
+
+                    <div class="form-actions">
+                        <div class="field-group count-field">
+                            <label for="question-count">Jumlah soal</label>
+                            <div class="number-control">
+                                <button id="decrease-question-count" type="button" aria-label="Kurangi jumlah soal">−</button>
+                                <input id="question-count" type="number" min="5" max="20" value="10" inputmode="numeric">
+                                <button id="increase-question-count" type="button" aria-label="Tambah jumlah soal">+</button>
+                            </div>
+                        </div>
+                        <button id="generate-quiz-btn" type="button" class="primary-button">
+                            <span>Buat kuis</span><span class="button-arrow" aria-hidden="true">↗</span>
+                        </button>
+                    </div>
+                    <output id="generation-status" class="form-status" aria-live="polite"></output>
+                </form>
+            </section>
+
+            <section id="loading-screen" class="loading-screen hidden" aria-live="polite" aria-busy="true">
+                <div class="loading-content">
+                    <div class="loading-orbit" aria-hidden="true"><span>Q</span></div>
+                    <p class="eyebrow"><span>01</span> / MENYIAPKAN KUIS</p>
+                    <h2 id="loading-title">Mengirim materi</h2>
+                    <p id="loading-message" class="loading-message">Mengunggah file ke server.</p>
+                    <div class="loading-progress-row">
+                        <progress id="loading-progress" class="loading-progress-accessible" aria-label="Progres unggah materi" max="100" value="0">Unggah materi</progress>
+                        <div class="loading-progress-track" aria-hidden="true">
+                            <div id="loading-progress-bar" class="loading-progress-bar"></div>
+                        </div>
+                        <span id="loading-percent" class="loading-percent">0%</span>
+                    </div>
+                    <p class="loading-note">Persentase menunjukkan progres unggah. Penyusunan kuis berlangsung di server.</p>
+                </div>
+            </section>
+
+            <section id="quiz-screen" class="question-screen" style="display: none;">
+                <div class="question-topline">
+                    <span class="eyebrow"><span>02</span> / KUIS KUSTOM</span>
+                    <div class="timer-chip"><span class="timer-pulse"></span><span id="timer-display">00:00</span></div>
+                </div>
+                <div class="question-heading">
+                    <p class="question-count">PERTANYAAN <span id="current-q-num">1</span><span class="count-divider">/</span><span id="total-q-num">10</span></p>
+                    <h2 id="instruction-text">Pertanyaan kuis</h2>
+                </div>
+                <div class="answer-section">
+                    <div class="answer-label"><span>PILIH JAWABAN</span><span class="answer-hint">Pilih satu opsi</span></div>
+                    <div id="options-container" class="answer-grid"></div>
+                </div>
+                <div class="question-footer">
+                    <p class="points-label"><span class="points-star">✳</span> <span id="q-points">10</span> poin</p>
+                    <button id="next-btn" class="primary-button next-button" type="button">
+                        <span>Simpan &amp; lanjut</span><span class="button-arrow" aria-hidden="true">→</span>
+                    </button>
+                </div>
+            </section>
+
+            <section id="result-screen" class="result-screen" style="display: none;">
+                <div id="capture-area" class="result-capture">
+                    <p class="eyebrow"><span>03</span> / SELESAI</p>
+                    <div class="result-title-row">
+                        <div>
+                            <p class="result-kicker">HASIL KUIS</p>
+                            <h2>Kerja bagus,<br><em id="final-name">Peserta</em>.</h2>
+                        </div>
+                        <div class="result-seal" aria-hidden="true"><span>Q</span><small>DONE</small></div>
+                    </div>
+                    <div class="result-stats">
+                        <div class="result-stat score-stat">
+                            <span>SKOR AKHIR</span>
+                            <strong id="final-score">0</strong>
+                            <small>poin</small>
+                        </div>
+                        <div class="result-stat time-stat">
+                            <span>WAKTU</span>
+                            <strong id="final-time">00:00</strong>
+                            <small>menit : detik</small>
+                        </div>
+                    </div>
+                    <p class="result-note">Setiap langkah kecil membangun pemahaman yang lebih kuat.</p>
+                </div>
+                <div class="result-actions">
+                    <button id="share-btn" class="primary-button" type="button"><span>Bagikan skor</span><span class="button-arrow" aria-hidden="true">↗</span></button>
+                    <button id="restart-btn" class="secondary-button" type="button">Buat kuis baru <span aria-hidden="true">↻</span></button>
+                </div>
+            </section>
+        </main>
+
+        <footer class="site-footer"><span>RUANG KUIS</span><span>SESI BELAJAR <span class="footer-index">№ 01</span></span></footer>
+    </div>
+    
+    <script type="module" src="./src/main.js"></script>
+</body>
+</html>
