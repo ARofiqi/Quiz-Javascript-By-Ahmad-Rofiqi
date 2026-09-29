@@ -69,3 +69,7 @@ Untuk memperbarui image Docker Hub milik repository, login ke Docker Hub lalu ja
 ## Deploy di Render
 
 Buat Blueprint dari repository ini. Render menggunakan `render.yaml` untuk build dan start Next.js; atur `HF_TOKEN` pada environment service Render. Health check API tersedia di `/api/health`.
+
+## Deploy di Vercel
+
+Hubungkan repository dengan Root Directory di root repo dan Framework Preset `Next.js`. Biarkan Output Directory kosong/default Next.js; jangan isi `public` atau `frontend/dist`, karena aplikasi memakai server Next.js untuk API. Atur `HF_TOKEN` dan, bila diperlukan, `HF_MODEL` di Environment Variables Vercel.
