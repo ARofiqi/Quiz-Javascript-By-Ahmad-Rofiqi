@@ -3,7 +3,6 @@
 Aplikasi untuk membuat dan memainkan kuis pilihan ganda dari materi belajar yang diunggah. Frontend dan API berjalan dalam satu aplikasi Next.js dengan TypeScript; pembuatan soal menggunakan Hugging Face Inference Providers.
 
 ## Fitur
-
 - Membuat 5 sampai 20 soal pilihan ganda dari materi.
 - Menerima PDF, DOCX, TXT, dan Markdown hingga 5 MB.
 - Menampilkan kuis interaktif dengan timer, skor, dan hasil.
