@@ -4,26 +4,26 @@
   "version": "0.0.0",
   "type": "module",
   "scripts": {
-    "dev": "concurrently -k \"node backend/server.js\" \"vite frontend --config frontend/vite.config.js\"",
-    "build": "vite build frontend --config frontend/vite.config.js",
-    "start": "node backend/server.js",
-    "preview": "vite preview frontend --config frontend/vite.config.js",
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start",
     "security:audit": "npm audit --audit-level=moderate"
   },
   "devDependencies": {
+    "@types/node": "^26.6.3",
+    "@types/react": "^19.3.0",
+    "@types/react-dom": "^19.3.0",
     "autoprefixer": "^10.4.27",
     "postcss": "^8.5.8",
     "tailwindcss": "^3.4.19",
-    "vite": "^7.3.1"
+    "typescript": "^5.9.3"
   },
   "dependencies": {
-    "concurrently": "^10.0.5",
-    "dotenv": "^17.2.2",
-    "express": "^5.2.1",
     "html2canvas": "^1.4.1",
-    "jquery": "^4.0.0",
     "mammoth": "^1.13.0",
-    "multer": "^2.4.0",
-    "pdf-parse": "^1.1.1"
+    "next": "^16.3.7",
+    "pdf-parse": "^1.1.1",
+    "react": "^19.3.0",
+    "react-dom": "^19.3.0"
   }
 }

@@ -1,8 +1,7 @@
 services:
   kuis-javascript:
-    # image: ${DOCKERHUB_USERNAME:?Isi DOCKERHUB_USERNAME di file .env}/kuis-javascript:latest
     image: rofiqi/kuis-javascript:latest
-    pull_policy: always
+    build: .
     ports:
       - "3000:3000"
     environment:

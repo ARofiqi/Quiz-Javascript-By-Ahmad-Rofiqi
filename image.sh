@@ -5,7 +5,7 @@ PROJECT_DIR=$(CDPATH= cd -- "$(dirname -- "$0")" && pwd)
 cd "$PROJECT_DIR"
 
 if [ ! -f .env ]; then
-    printf '%s\n' 'File .env tidak ditemukan. Buat dari .env.example dan isi DOCKERHUB_USERNAME serta HF_TOKEN.' >&2
+    printf '%s\n' 'File .env tidak ditemukan. Buat dari .env.example dan isi HF_TOKEN.' >&2
     exit 1
 fi
 

@@ -1,8 +1,8 @@
 services:
   - type: web
-    name: kuis-javascript-api
+    name: kuis-javascript
     runtime: node
-    buildCommand: npm ci
+    buildCommand: npm ci && npm run build
     startCommand: npm start
     healthCheckPath: /api/health
     envVars:

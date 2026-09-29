@@ -1,27 +1,34 @@
-FROM node:22-alpine AS build
+FROM node:24-alpine AS dependencies
 
 WORKDIR /app
 
 COPY package*.json ./
 RUN npm ci
 
+FROM node:24-alpine AS build
+
+WORKDIR /app
+ENV NEXT_TELEMETRY_DISABLED=1
+
+COPY --from=dependencies /app/node_modules ./node_modules
 COPY . .
 RUN npm run build
 
-FROM node:22-alpine AS runtime
+FROM node:24-alpine AS runtime
 
 WORKDIR /app
 ENV NODE_ENV=production
+ENV NEXT_TELEMETRY_DISABLED=1
 ENV PORT=3000
+ENV HOSTNAME=0.0.0.0
 
-COPY package*.json ./
-RUN npm ci --omit=dev && npm cache clean --force
+RUN addgroup -S nodejs && adduser -S nextjs -G nodejs
 
-COPY backend ./backend
-COPY --from=build --chown=node:node /app/frontend/dist ./frontend/dist
+COPY --from=build --chown=nextjs:nodejs /app/.next/standalone ./
+COPY --from=build --chown=nextjs:nodejs /app/.next/static ./.next/static
 
 EXPOSE 3000
 
-USER node
+USER nextjs
 
-CMD ["npm", "start"]
+CMD ["node", "server.js"]
