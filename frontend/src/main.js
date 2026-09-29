@@ -2,6 +2,8 @@ import './style.css';
 import $ from 'jquery';
 import html2canvas from 'html2canvas';
 
+const apiBaseUrl = (import.meta.env.VITE_API_BASE_URL || '').replace(/\/$/, '');
+
 $(document).ready(function() {
     let currentQuizSequence = [];
     let student = { name: '' };
@@ -155,7 +157,7 @@ $(document).ready(function() {
             formData.append('questionCount', String(questionCount));
             const result = await new Promise((resolve, reject) => {
                 const request = new XMLHttpRequest();
-                request.open('POST', '/api/generate-quiz');
+                request.open('POST', `${apiBaseUrl}/api/generate-quiz`);
                 request.upload.addEventListener('progress', (event) => {
                     if (!event.lengthComputable) return;
                     const percentage = Math.round((event.loaded / event.total) * 100);

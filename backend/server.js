@@ -2,6 +2,7 @@ import 'dotenv/config';
 import express from 'express';
 import multer from 'multer';
 import mammoth from 'mammoth';
+import { existsSync } from 'node:fs';
 import path from 'node:path';
 import { createRequire } from 'node:module';
 import { fileURLToPath } from 'node:url';
@@ -13,6 +14,7 @@ app.disable('x-powered-by');
 const port = Number(process.env.PORT) || 3000;
 const projectDir = path.dirname(fileURLToPath(import.meta.url));
 const frontendDist = path.resolve(projectDir, '../frontend/dist');
+const allowedOrigins = new Set((process.env.FRONTEND_URL || '').split(',').map((origin) => origin.trim().replace(/\/$/, '')).filter(Boolean));
 const allowedExtensions = new Set(['.pdf', '.docx', '.txt', '.md']);
 const upload = multer({
     storage: multer.memoryStorage(),
@@ -23,6 +25,20 @@ const upload = multer({
         callback(isAllowed ? null : new Error('Format file tidak didukung.'), isAllowed);
     },
 });
+
+app.use((request, response, next) => {
+    const origin = request.get('Origin');
+    if (origin && allowedOrigins.has(origin)) {
+        response.set('Access-Control-Allow-Origin', origin);
+        response.set('Access-Control-Allow-Methods', 'POST, OPTIONS');
+        response.set('Access-Control-Allow-Headers', 'Content-Type');
+        response.vary('Origin');
+    }
+    if (request.method === 'OPTIONS') return response.sendStatus(204);
+    next();
+});
+
+app.get('/api/health', (_request, response) => response.json({ status: 'ok' }));
 
 async function extractText(file) {
     const extension = path.extname(file.originalname).toLowerCase();
@@ -125,7 +141,6 @@ app.post('/api/generate-quiz', upload.single('material'), async (request, respon
     }
 });
 
-app.use(express.static(frontendDist));
 app.use((error, _request, response, next) => {
     if (response.headersSent) return next(error);
     const isUploadError = error instanceof multer.MulterError;
@@ -133,9 +148,11 @@ app.use((error, _request, response, next) => {
     response.status(status).json({ error: error.message || 'File tidak dapat diproses.' });
 });
 
-app.use(express.static(frontendDist));
-app.get(/.*/, (_request, response) => {
-    response.sendFile(path.join(frontendDist, 'index.html'));
-});
+if (existsSync(frontendDist)) {
+    app.use(express.static(frontendDist));
+    app.get(/.*/, (_request, response) => {
+        response.sendFile(path.join(frontendDist, 'index.html'));
+    });
+}
 
 app.listen(port, () => console.log(`Quiz server listening on port ${port}`));

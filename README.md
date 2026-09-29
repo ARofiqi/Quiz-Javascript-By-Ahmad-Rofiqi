@@ -31,6 +31,8 @@ Variabel:
 
 - `HF_TOKEN`: access token Hugging Face dengan izin inference; wajib untuk membuat kuis.
 - `HF_MODEL`: model chat di Hugging Face Inference Providers; opsional, memakai nilai contoh jika kosong.
+- `VITE_API_BASE_URL`: URL publik backend; diisi sebagai build variable frontend saat deploy terpisah.
+- `FRONTEND_URL`: origin frontend yang diizinkan backend; diisi pada environment Render.
 - `DOCKERHUB_USERNAME`: username pemilik image `kuis-javascript` di Docker Hub; dibutuhkan untuk cara Docker.
 
 Jangan beri prefix `VITE_` pada `HF_TOKEN`, dan jangan commit file `.env`.
@@ -80,6 +82,30 @@ Setelah image baru dipublikasikan, tarik dan jalankan versi terbaru:
 docker compose pull
 docker compose up -d
 ```
+
+## Deploy Terpisah: Render dan Cloudflare Pages
+
+Folder `backend/` berisi API Express dan `frontend/` berisi aplikasi Vite. Keduanya dapat dideploy terpisah dari repository yang sama.
+
+### Backend di Render
+
+1. Buat Blueprint dari repository ini; Render membaca konfigurasi `render.yaml` di root.
+2. Atur `HF_TOKEN` pada environment service Render.
+3. Setelah frontend Cloudflare Pages tersedia, atur `FRONTEND_URL` ke origin Pages, misalnya `https://nama-proyek.pages.dev` (tanpa path atau slash di akhir).
+4. URL service Render menjadi nilai `VITE_API_BASE_URL` untuk build frontend.
+
+Health check API tersedia di `/api/health`.
+
+### Frontend di Cloudflare Pages
+
+Hubungkan repository yang sama ke Cloudflare Pages dan gunakan pengaturan build berikut:
+
+- Root directory: `/` (root repository)
+- Build command: `npm ci && npm run build`
+- Build output directory: `frontend/dist`
+- Environment variable: `VITE_API_BASE_URL` dengan URL service Render, misalnya `https://kuis-javascript-api.onrender.com`
+
+Setelah mengubah `VITE_API_BASE_URL`, jalankan ulang deployment Pages agar alamat API masuk ke bundle frontend. Untuk preview deployment atau custom domain, tambahkan origin frontend tersebut ke `FRONTEND_URL` di Render; beberapa origin dapat dipisahkan dengan koma.
 
 ## Memperbarui Image Docker Hub
 
