@@ -1,4 +1,3 @@
-import { createRequire } from 'node:module';
 import path from 'node:path';
 import mammoth from 'mammoth';
 
@@ -47,8 +46,8 @@ function validateInput(formData: FormData): InputValidation {
 async function extractText(file: File, buffer: Buffer): Promise<string> {
     const extension = path.extname(file.name).toLowerCase();
     if (extension === '.pdf') {
-        const require = createRequire(`${process.cwd()}/package.json`);
-        const pdfParse = require('pdf-parse') as (content: Buffer) => Promise<{ text: string }>;
+        const pdfParser = await import('pdf-parse') as { default: (content: Buffer) => Promise<{ text: string }> };
+        const pdfParse = pdfParser.default;
         return (await pdfParse(buffer)).text;
     }
     if (extension === '.docx') return (await mammoth.extractRawText({ buffer })).value;
