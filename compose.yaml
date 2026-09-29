@@ -1,0 +1,12 @@
+services:
+  kuis-javascript:
+    # image: ${DOCKERHUB_USERNAME:?Isi DOCKERHUB_USERNAME di file .env}/kuis-javascript:latest
+    image: rofiqi/kuis-javascript:latest
+    pull_policy: always
+    ports:
+      - "3000:3000"
+    environment:
+      PORT: "3000"
+      HF_TOKEN: ${HF_TOKEN:?Isi HF_TOKEN di file .env}
+      HF_MODEL: ${HF_MODEL:-Qwen/Qwen2.5-7B-Instruct}
+    restart: unless-stopped

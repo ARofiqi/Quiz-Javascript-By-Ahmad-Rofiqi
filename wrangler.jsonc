@@ -2,7 +2,5 @@
   "$schema": "node_modules/wrangler/config-schema.json",
   "name": "kuis-javascript",
   "compatibility_date": "2026-09-28",
-  "assets": {
-    "directory": "./frontend/dist"
-  }
+  "pages_build_output_dir": "./frontend/dist"
 }
